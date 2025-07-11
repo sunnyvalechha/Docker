@@ -29,6 +29,19 @@ Note: Above commands are run through user root and a regular does not have a per
         # This command should run to start the container
         CMD ["python3","app.py"]
 
+**Run the docker file**
+
+docker build -t ubuntu:latest .
+
+**Key points:**
+
+* The -t flag names and optionally tags your image (format name:tag)
+* The . at the end specifies the build context (current directory)
+* Your Dockerfile should be named "Dockerfile" (case-sensitive) and be in this directory
+* If your Dockerfile has a different name, you would use the -f flag
+
+Example: docker build -t docker-image:latest -f MyDockerfile .
+
 
 
 
