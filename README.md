@@ -16,12 +16,19 @@ Note: Above commands are run through user root and a regular does not have a per
 
 **First Docker file**
 
-    FROM ubuntu:latest
-    WORKDIR /app
-    COPY . /app
-    RUN apt-get update && apt-get install python3 python3-pip -y
-    ENV NAME World
-    CMD ["python3","app.py"]
+        # Image used is ubuntu
+        FROM ubuntu:latest
+        # Set the working directory where we want to place all content
+        WORKDIR /app
+        # Copy the content from local to docker image in specific folder
+        COPY . /app
+        # Install necessary packages
+        RUN apt-get update && apt-get install python3 python3-pip -y
+        # Set env variable
+        ENV NAME World
+        # This command should run to start the container
+        CMD ["python3","app.py"]
+
 
 
 
