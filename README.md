@@ -2,6 +2,12 @@
 
 Reference repo: https://github.com/iam-veeramalla/Docker-Zero-to-Hero
 
+Docker: Docker is a platform where we run virtaul machines as a container with minimum system dependencies.
+
+Containers: A container is a bundle of application and application libraries required to run your application in the minimum system dependencies.
+
+Docker daemon: The Docker daemon is the heart of the Docker system. It's responsible for managing the entire Docker lifecycle. 
+
 * docker run hello-world      # Create 1st Image
 
 * docker images               # Check created images
