@@ -46,12 +46,18 @@ docker build -t ubuntu:latest .
 * Your Dockerfile should be named "Dockerfile" (case-sensitive)
 * If your Dockerfile has a different name, you would use the -f flag
 
-Example: docker build -t docker-image:latest -f MyDockerfile .
+**Example:** docker build -t docker-image:latest -f MyDockerfile .
 
-**Purpose** to create a image is to run the application.
+**Purpose** of creating a image is run the application.
 
-Steps:
+**Steps:**
 
 1. Create Dockerfile
 2. Docker image created
 3. Run the image to create a container
+
+        docker run -it sunny/ubuntu:latest /bin/bash
+
+* docker ps                # list running containers
+* docker ps -a             # list running / non-running containers
+* 
