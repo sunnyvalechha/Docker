@@ -62,8 +62,10 @@ Note: Above commands are run through user root and a regular does not have a per
 
 * -it = interactive terminal (keeps STDIN open and allocates a pseudo-TTY)
 * /bin/bash = starts a Bash shell inside the container
-* 
 
-* docker ps                # list running containers
-* docker ps -a             # list running / non-running containers
-
+          docker ps                # list running containers
+          docker ps -a             # list running / non-running containers
+          docker login             # login to dockerhub
+          docker push sunny/ubuntu:latest         # push image to docker hub
+          docker pull <image-name>                # pull any image from docker hub
+  
