@@ -8,15 +8,15 @@ Containers: A container is a bundle of application and application libraries req
 
 Docker daemon: The Docker daemon is the heart of the Docker system. It's responsible for managing the entire Docker lifecycle. 
 
-* docker run hello-world      # Create 1st Image
+        docker run hello-world      # Create 1st Image
 
-* docker images               # Check created images
+        docker images               # Check created images
 
 Note: Above commands are run through user root and a regular does not have a permission to run docker commands, this is a drawback which docker have. So add your localuser to group docker.
 
-* [ec2-user@ip-172-31-7-199 ~]$ sudo usermod -aG docker ec2-user
+          sudo usermod -aG docker ec2-user
 
-* grep docker /etc/group
+          grep docker /etc/group
 
 **Logout and Login back from localuser (ec2-user)**
 
@@ -37,7 +37,7 @@ Note: Above commands are run through user root and a regular does not have a per
 
 **Run the docker file**
 
-docker build -t ubuntu:latest .
+        docker build -t ubuntu:latest .
 
 **Key points:**
 
@@ -58,6 +58,12 @@ docker build -t ubuntu:latest .
 
         docker run -it sunny/ubuntu:latest /bin/bash
 
+**Key points:**
+
+* -it = interactive terminal (keeps STDIN open and allocates a pseudo-TTY)
+* /bin/bash = starts a Bash shell inside the container
+* 
+
 * docker ps                # list running containers
 * docker ps -a             # list running / non-running containers
-* 
+
