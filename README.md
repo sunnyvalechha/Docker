@@ -41,14 +41,17 @@ docker build -t ubuntu:latest .
 
 **Key points:**
 
-* The -t flag names and optionally tags your image (format name:tag)
-* The . at the end specifies the build context (current directory)
-* Your Dockerfile should be named "Dockerfile" (case-sensitive) and be in this directory
+* The -t flag assign names to the image and it is optional because in the system 100's of image might present.
+* The . at the end specifies current directory
+* Your Dockerfile should be named "Dockerfile" (case-sensitive)
 * If your Dockerfile has a different name, you would use the -f flag
 
 Example: docker build -t docker-image:latest -f MyDockerfile .
 
+**Purpose** to create a image is to run the application.
 
+Steps:
 
-
-
+1. Create Dockerfile
+2. Docker image created
+3. Run the image to create a container
