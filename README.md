@@ -98,6 +98,29 @@ Q: A production issue that faced and a solution?
 A: Earlier Ubuntu, RedHat, or Python runtime base images were used, which were exposed to some kind of vulnerabilities by hackers. We moved to a Python distro-less image that only has the Python runtime and does not have any other basic packages like 'ls' or 'cd'. So this provides us with a high level of security.
 That's how our applications are not exposed to any OS or Os related vulnerabilities.
 
+**Practical:**
+
+        yum install go -y
+        yum install git
+        git --version
+        mkdir abhiveera
+        cd abhiveera/
+        git clone https://github.com/iam-veeramalla/Docker-Zero-to-Hero.git
+        cd /home/ec2-user/abhiveera/Docker-Zero-to-Hero/examples/golang-multi-stage-docker-build/dockerfile-without-multistage
+        go run calculator.go
+
+Now, containerize the application
+
+        docker build -t simplecalci .
+        docker images
+
+Note: The Size of the image should be around 800-900 MB
+
+Go back 1 folder at path - /home/ec2-user/abhiveera/Docker-Zero-to-Hero/examples/golang-multi-stage-docker-build/
+
+<img width="459" height="456" alt="image" src="https://github.com/user-attachments/assets/c2cae46d-98de-4c89-87c4-a3bf1046b71e" />
+
+
 
  
   
