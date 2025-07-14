@@ -78,4 +78,16 @@ Note: Above commands are run through user root and a regular does not have a per
           docker login                             # login to dockerhub
           docker push sunny/ubuntu:latest          # push image to docker hub
           docker pull <image-name>                 # pull any image from docker hub
+
+
+
+
+# Multi-stage Docker builds & Distro-less images
+
+Q: A production issue that faced and a solution?
+A: Earlier Ubuntu, RedHat, or Python runtime base images were used, which were exposed to some kind of vulnerabilities by hackers. We moved to a Python distro-less image that only has the Python runtime and does not have any other basic packages like 'ls' or 'cd'. So this provides us with a high level of security.
+That's how our applications are not exposed to any OS or Os related vulnerabilities.
+
+
+ 
   
