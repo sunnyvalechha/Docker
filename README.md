@@ -35,6 +35,16 @@ Note: Above commands are run through user root and a regular does not have a per
         # This command should run to start the container
         CMD ["python3","app.py"]
 
+
+**Points to remember**: Difference between "Entry Point" and "CMD"? 
+
+* When anyone runs the "Docker run" command, both "Entry Point" and "CMD" serve as your starting command.
+* "Entry Point" is something we cannot change. We cannot override this value in the docker image.
+* "CMD" is configurable in the docker image. Example: the port & the IP address is configurable in CMD.
+* The options mentioned in the Entry point can be mentioned in the CMD but when we don't want the someone to change the executable like I want to run with python3 only, then we will use as a "EntryPoint"        
+
+
+
 **Run the docker file**
 
         docker build -t ubuntu:latest .
