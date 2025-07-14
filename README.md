@@ -98,6 +98,11 @@ Q: A production issue that faced and a solution?
 A: Earlier Ubuntu, RedHat, or Python runtime base images were used, which were exposed to some kind of vulnerabilities by hackers. We moved to a Python distro-less image that only has the Python runtime and does not have any other basic packages like 'ls' or 'cd'. So this provides us with a high level of security.
 That's how our applications are not exposed to any OS or Os related vulnerabilities.
 
+Q: How to find distroless images?
+A: Google > distroless images > Github > https://github.com/GoogleContainerTools/distroless
+Go to a folder like Python> readme.md > base image
+
+
 **Practical:**
 
         yum install go -y
@@ -119,6 +124,14 @@ Note: The Size of the image should be around 800-900 MB
 Go back 1 folder at path - /home/ec2-user/abhiveera/Docker-Zero-to-Hero/examples/golang-multi-stage-docker-build/
 
 <img width="459" height="456" alt="image" src="https://github.com/user-attachments/assets/c2cae46d-98de-4c89-87c4-a3bf1046b71e" />
+
+* Here, the docker file is split into 2 stages.
+* Stage 1 we don't have a Entry-point of CMD
+* Stage 1 is only dedicated to build steps
+* **Stratch** - Minimalistic distroless image
+
+By moving towards multi-stage builds and distroless images we not only reduce the size of the images but also make sure that the containers we have are running securily and these images are very less vulnerable to the threats.
+
 
 
 
