@@ -84,6 +84,16 @@ Note: Above commands are run through user root and a regular does not have a per
 
 # Multi-stage Docker builds & Distro-less images
 
+**Multi-stage builds** is a feature that allows you to use multiple FROM statements in a single Dockerfile. Each FROM statement marks the beginning of a new stage, and each stage can have a different base image.
+
+**Benefits**
+* Smaller image size: By excluding unnecessary build dependencies and development tools from the final image, multi-stage builds significantly reduce the image size.
+* Enhanced security: Smaller images with fewer components reduce the attack surface and potential vulnerabilities in production deployments.
+* Improved build performance: Docker can cache intermediate layers in multi-stage builds, speeding up subsequent builds when only changes are made to later stages.
+* Simplified Dockerfile maintenance: Multi-stage builds help organize your Dockerfile, making it more modular and easier to maintain by separating concerns into distinct stages.
+
+**Distroless images** are minimal Docker images designed to contain only your application and its essential runtime dependencies, stripping out the rest of a typical Linux distribution.
+
 Q: A production issue that faced and a solution?
 A: Earlier Ubuntu, RedHat, or Python runtime base images were used, which were exposed to some kind of vulnerabilities by hackers. We moved to a Python distro-less image that only has the Python runtime and does not have any other basic packages like 'ls' or 'cd'. So this provides us with a high level of security.
 That's how our applications are not exposed to any OS or Os related vulnerabilities.
