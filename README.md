@@ -134,11 +134,19 @@ By moving towards multi-stage builds and distroless images we not only reduce th
 
 # Bind mounts & Volumes
 
-Bind mount: A file or directory on the host machine is mounted with a container.
+**Bind mount**: 
+* A file or directory on the host machine is mounted with a container.
+* Bind mount creates direct link between a host system path and a container allowing access to files or directories stored anywhere on the host.
+
+**Volume**: 
+* Whenever we create a volume using "docker volume create" command and docker itself create a directory.
+* Volumes retain the data even after the containers using the volumes are deleted.
+* Volume data is stored on the host OS but to access the volume data we must mount the volume directory with the container.
 
 When to use:
 * When you want to create or generate files in a container and persist the files onto the host's filesystem.
 * Sharing configuration files from the host machine to containers. This is how Docker provides DNS resolution to containers by default, by mounting **/etc/resolv.conf** from the host machine into each container.
+* Docker volume can be shared between host to container and container to container.
 
 
 Why: Containers are lightweight and utilize the host operating system's resources (CPU, memory).
@@ -154,8 +162,11 @@ Why: Containers are lightweight and utilize the host operating system's resource
 Note: Above, we have created a volume, now we can dedicate this partition / volume to one container or multiple containers.
 
 * docker volume inspect dev-volume          # get information about the volume
+
+Note: To delete the volume first stop the containert then delete the container.
+
 * docker volume rm sunnyvol                 # delete a volume
-* 
+
 
 
  
