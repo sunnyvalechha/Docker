@@ -167,6 +167,14 @@ Note: To delete the volume first stop the containert then delete the container.
 
 * docker volume rm sunnyvol                 # delete a volume
 
+Note: I have create a image through that I've created a container inside a container I've create a directory called "sundir" and created some random files inside a folder & exit the container.
+
+
+
+
+
+
+
 
 
  
