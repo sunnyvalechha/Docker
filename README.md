@@ -149,9 +149,8 @@ When to use:
 * Docker volume can be shared between host to container and container to container.
 
 
-Why: Containers are lightweight and utilize the host operating system's resources (CPU, memory).
+Why: Containers are lightweight and utilize the host operating system's resources (CPU, memory)?.
 * Suppose there is an application running on a container and a application also have a log file and suddenly the container goes down.
-* 
 
 **Practical:**
 
@@ -166,8 +165,16 @@ Note: Above, we have created a volume, now we can dedicate this partition / volu
 Note: To delete the volume first stop the containert then delete the container.
 
 * docker volume rm sunnyvol                 # delete a volume
+* docker run -d --mount source=sunny,target=/app nginx:latest
+* docker inspect a056b606c3fa | grep Mount
 
-Note: I have create a image through that I've created a container inside a container I've create a directory called "sundir" and created some random files inside a folder & exit the container.
+<img width="842" height="233" alt="image" src="https://github.com/user-attachments/assets/4c6cd8dc-f8e2-47cd-888e-7dece6fac70e" />
+
+
+The directory "/var/lib/docker/volumes/sunny/_data" will be created at the local machine.
+
+
+
 
 
 
