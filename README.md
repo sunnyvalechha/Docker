@@ -132,13 +132,30 @@ Go back 1 folder at path - /home/ec2-user/abhiveera/Docker-Zero-to-Hero/examples
 
 By moving towards multi-stage builds and distroless images we not only reduce the size of the images but also make sure that the containers we have are running securily and these images are very less vulnerable to the threats.
 
-# Docker bind mounts & Volumes
+# Bind mounts & Volumes
+
+Bind mount: A file or directory on the host machine is mounted with a container.
+
+When to use:
+* When you want to create or generate files in a container and persist the files onto the host's filesystem.
+* Sharing configuration files from the host machine to containers. This is how Docker provides DNS resolution to containers by default, by mounting **/etc/resolv.conf** from the host machine into each container.
+
 
 Why: Containers are lightweight and utilize the host operating system's resources (CPU, memory).
 * Suppose there is an application running on a container and a application also have a log file and suddenly the container goes down.
 * 
 
+**Practical:**
 
+* docker -v | docker --mount                # both the commands works same
+* docker volume ls                          # list all volumes
+* docker volume create dev-volume           # create new volume
+
+Note: Above, we have created a volume, now we can dedicate this partition / volume to one container or multiple containers.
+
+* docker volume inspect dev-volume          # get information about the volume
+* docker volume rm sunnyvol                 # delete a volume
+* 
 
 
  
