@@ -132,6 +132,12 @@ Go back 1 folder at path - /home/ec2-user/abhiveera/Docker-Zero-to-Hero/examples
 
 By moving towards multi-stage builds and distroless images we not only reduce the size of the images but also make sure that the containers we have are running securily and these images are very less vulnerable to the threats.
 
+# Docker bind mounts & Volumes
+
+Why: Containers are lightweight and utilize the host operating system's resources (CPU, memory).
+* Suppose there is an application running on a container and a application also have a log file and suddenly the container goes down.
+* 
+
 
 
 
