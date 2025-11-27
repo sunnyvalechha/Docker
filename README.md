@@ -5,7 +5,21 @@ Containers:
 * A container is a bundle of application and application libraries required to run your application in the minimum system dependencies.
 * A container is an advanced version of a virtual machine, and Docker is a tool that creates containers as virtual machines.
 * Containers are light in weight (size), and they are isolated from the underlying infrastructure.
-* Virtualization is a technology that is used to create virtual representations of servers, storage, and networks on physical machines.
+* Virtualization is a technology that is used to create virtual representations of servers, storage, and networks on physical machines.:
+
+Technology Behind Docker:
+* Docker is built on top of several features of the Linux kernel.
+* Linux kernel is the part of the operating system that communicates directly with the computer's hardware and manages the system's resources (such as memory, CPU, and so on).
+* Let's take a closer look at two of these features: namespaces and control groups.
+
+Namespaces:
+* It creates a little "container" for your app that's isolated from the rest of the system.
+* This means that the app can't see or interact with other apps or processes running on the same machine.
+* This is useful because it lets you run multiple apps on the same machine without allowing them to negatively interfere with each other.
+
+Control groups (cgroups):
+* cgroups set limits on how much of the computer's resources (like CPU, memory, and so on) each container can use.
+* This helps make sure that one container doesn't use up all the resources and leave nothing for the other apps.
 
 Docker Architecture's Core components:
 1. Docker Daemon (background process)
@@ -40,19 +54,28 @@ Note: Below commands are run through user root and a regular does not have a per
         sudo usermod -aG docker ec2-user
         grep docker /etc/group
 
-Dockerfile:
+Key Dockerfile instructions:
+* Docker supports over 15 different Dockerfile instructions for adding content to your image.
+* Each plays a distinct role in shaping the container’s behavior, layering, and configuration.
 
-        # Image used is ubuntu
+        FROM: Sets the base image (e.g., FROM ubuntu:20.04)
+        RUN: Executes shell commands during build time
+        CMD: Provides default command to run at container start
+        ENTRYPOINT: Defines a fixed command, often combined with CMD for arguments
+        COPY: Copies files into the image
+        ADD: ADD supports URLs and archives
+        ENV: Sets environment variables
+        EXPOSE: Documents which ports the container will listen on
+        WORKDIR: Sets the working directory for following instructions
+        VOLUME: Declares mount points for persistent or shared data
+        ARG: Defines build-time variables, usable during RUN
+
+Dockerfile:
         FROM ubuntu:latest
-        # Set the working directory where we want to place all content
         WORKDIR /app
-        # Copy the content from local to docker image in specific folder
         COPY . /app
-        # Install necessary packages
         RUN apt-get update && apt-get install python3 python3-pip -y
-        # Set env variable
         ENV NAME World
-        # This command should run to start the container
         CMD ["python3","app.py"]
 
 
