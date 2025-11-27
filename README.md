@@ -262,6 +262,7 @@ Types:
 6. ipvlan: Similar to macvlan but uses a different method for traffic handling. It’s more efficient for high-density environments but less flexible.
 
 Example:
+        
         docker network ls                # list available networks
         docker run -d --name login nginx:latest
         docker run -d --name logout nginx:latest
@@ -275,6 +276,14 @@ Example:
 Note: Ping from login container to logout container, it will work as they are using bridge networking and both are in same network
 
         docker network create secure-network        # create bridge network named secure-network
-        docker run -d --name finance --network=secure-network nginx:latest        # create another cont named finance
+        docker run -d --name finance --network=secure-network nginx:latest        # create another cont named finance with attached network
+        docker inspect finance        # "Networks": "secure-network, (others have bridge network)
+        docker inspect finance | grep Address        # "IPAddress": "172.18.0.2" (network changed)
         
+        
+Note: Ping from login cont to finance cont, this time it will not work (ping 172.18.0.2).
+
+         docker run -d --name host-cont --network=host nginx:latest        # cont created with "host" network, with no IP, it is binded with host networking itself, docker did not create any virtual network
+         
+         
 
