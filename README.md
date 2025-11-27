@@ -119,17 +119,17 @@ Contanerize django/any application:
 * To install any application we need to install a framework. ex: I want to run django application, so, I will install python first because I need a pip.
 * Once I get pip, I will install djando with pip.
 
-                cat requirement.txt 
-                numpy==1.26.2
-                
-                cat Dockerfile 
-                FROM python
-                WORKDIR /sunny
-                COPY requirement.txt /sunny
-                RUN pip install -r requirement.txt
-                ENTRYPOINT ["python3"]
-                
-                docker build -t sunny/django-app .
+        cat requirement.txt 
+        numpy==1.26.2
+                        
+        cat Dockerfile 
+        FROM python
+        WORKDIR /sunny
+        COPY requirement.txt /sunny
+        RUN pip install -r requirement.txt
+        ENTRYPOINT ["python3"]
+                        
+        docker build -t sunny/django-app .
 
 **Run the docker file**
 
