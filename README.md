@@ -47,10 +47,13 @@ Docker registry:
 * Registries can be public or private.
 * Anyone who have access to the registry/image can download the image and run as a container.
 
-Note: Below commands are run through user root and a regular does not have a permission to run docker commands, this is a drawback which docker have. So add your localuser to group docker and Logout and Login back from localuser
+Note: 
+* Below commands are run through user root and a regular does not have a permission to run docker commands.
+* this is a drawback which docker have. So add your localuser to group docker and Logout/Login back from localuser
 
         docker run hello-world      # Create 1st Image
         docker images               # Check created images
+        echo $USER
         sudo usermod -aG docker ec2-user
         grep docker /etc/group
 
@@ -100,6 +103,20 @@ Expose:
 * It does not automatically publish or map these ports to the host machine.
 * To actually make the exposed ports accessible from the host machine, you must map them when running the container using the "docker run -p" command.
 
+Run: 
+* RUN instruction executes commands during the build phase of a Docker image. 
+* Each RUN instruction creates a new layer in the image, effectively saving the state after the command is executed.
+
+ARG:
+* Define a variable that user can pass at build-time to the builder with "docker build" <var-name>=<value>
+* ARG variables are only available during the build process of a Docker image.
+* ARG variables do not persist in the final Docker image and are not accessible within a running container.
+
+ENV:
+* ENV variable always overrides ARG variables.
+* ENV variables are available during both the build process and at runtime within a running container.
+* ENV persist in the final Docker image and are accessible to applications running inside the container.
+
 Requirement.txt:
 * It's not a docker argument it is in Python, "requirements.txt" is a text file that lists all the external libraries, modules, and packages that a specific Python project depends on.
 * The "requirements.txt" file typically contains one package per line, optionally followed by a version specifier (e.g., package_name==1.2.3) (numpy==1.26.2).
@@ -117,20 +134,17 @@ Requirement.txt:
 * Your Dockerfile should be named "Dockerfile" (case-sensitive)
 * If your Dockerfile has a different name, you would use the -f flag
 
-**Example:** docker build -t docker-image:latest -f MyDockerfile .
+Example:
+docker build -t docker-image:latest -f MyDockerfile .
 
-**Purpose** of creating a image is run the application.
-
-**Steps:**
-
+Steps:
 1. Create Dockerfile
 2. Docker image created
 3. Run the image to create a container
 
         docker run -it sunny/ubuntu:latest /bin/bash
 
-**Key points:**
-
+Arguments:
 * -it = interactive terminal (keeps STDIN open and allocates a pseudo-TTY)
 * /bin/bash = starts a Bash shell inside the container
 
@@ -140,7 +154,21 @@ Requirement.txt:
           docker push sunny/ubuntu:latest          # push image to docker hub
           docker pull <image-name>                 # pull any image from docker hub
 
+Contanerize an django/any application:
+* To install any application we need to install a framework. ex: I want to run django application, so, I will install python first because I need a pip.
+* Once I get pip, I will install djando with pip.
 
+cat requirement.txt 
+numpy==1.26.2
+
+cat Dockerfile 
+FROM python
+WORKDIR /sunny
+COPY requirement.txt /sunny
+RUN pip install -r requirement.txt
+ENTRYPOINT ["python3"]
+
+docker build -t sunny/django-app .
 
 
 # Multi-stage Docker builds & Distro-less images
