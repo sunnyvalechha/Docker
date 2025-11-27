@@ -73,15 +73,6 @@ Key Dockerfile instructions:
         VOLUME: Declares mount points for persistent or shared data
         ARG: Defines build-time variables, usable during RUN
 
-Dockerfile:
-        FROM ubuntu:latest
-        WORKDIR /app
-        COPY . /app
-        RUN apt-get update && apt-get install python3 python3-pip -y
-        ENV NAME World
-        CMD ["python3","app.py"]
-
-
 EntryPoint/CMD:
 * When anyone runs the "Docker run" command, both "Entry Point" and "CMD" serve as your starting command.
 * "Entry Point" is something we cannot change. We cannot override this value in the docker image.
@@ -124,6 +115,22 @@ Requirement.txt:
 * The convention of using "requirements.txt" in Dockerfiles for Python projects is primarily due to its widespread adoption and integration within the Python ecosystem.
 * We can use a different file name (e.g., dependencies.txt, python_packages.txt) and specify it in your pip install command within the Dockerfile (e.g., RUN pip install -r dependencies.txt), this deviates from the established convention and offers no significant advantages. It would likely lead to confusion for developers familiar with the standard requirements.txt practice.
 
+Contanerize django/any application:
+* To install any application we need to install a framework. ex: I want to run django application, so, I will install python first because I need a pip.
+* Once I get pip, I will install djando with pip.
+
+cat requirement.txt 
+numpy==1.26.2
+
+cat Dockerfile 
+FROM python
+WORKDIR /sunny
+COPY requirement.txt /sunny
+RUN pip install -r requirement.txt
+ENTRYPOINT ["python3"]
+
+docker build -t sunny/django-app .
+
 **Run the docker file**
 
         docker build -t ubuntu:latest .
@@ -154,21 +161,7 @@ Arguments:
           docker push sunny/ubuntu:latest          # push image to docker hub
           docker pull <image-name>                 # pull any image from docker hub
 
-Contanerize an django/any application:
-* To install any application we need to install a framework. ex: I want to run django application, so, I will install python first because I need a pip.
-* Once I get pip, I will install djando with pip.
 
-cat requirement.txt 
-numpy==1.26.2
-
-cat Dockerfile 
-FROM python
-WORKDIR /sunny
-COPY requirement.txt /sunny
-RUN pip install -r requirement.txt
-ENTRYPOINT ["python3"]
-
-docker build -t sunny/django-app .
 
 
 # Multi-stage Docker builds & Distro-less images
