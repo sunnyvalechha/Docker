@@ -79,21 +79,39 @@ Dockerfile:
         CMD ["python3","app.py"]
 
 
-**Points to remember**: Difference between "Entry Point" and "CMD"? 
-
+EntryPoint/CMD:
 * When anyone runs the "Docker run" command, both "Entry Point" and "CMD" serve as your starting command.
 * "Entry Point" is something we cannot change. We cannot override this value in the docker image.
-* "CMD" is configurable in the docker image. Example: the port & the IP address is configurable in CMD.
-* The options mentioned in the Entry point can be mentioned in the CMD but when we don't want the someone to change the executable like I want to run with python3 only, then we will use as a "EntryPoint"        
+* "CMD" can be modified in the docker image. Example: the port & the IP address is configurable in CMD.
+* The options mentioned in the Entry point can be mentioned in the CMD but when we don't want someone to change the executable, ex: I want to run with python3 only, then we will use as a "EntryPoint" but ports can be changed by a developer as the port mentioned in the dockerfile is already in use of a developers machine.        
 
+COPY:
+* copy is faster and safer security wise in compared with ADD.
+* It Copies new files or directories from source and add them into filesytem of image at path <xyx>
 
+Add:
+* It also automatically untar the zip file when added into filesystem.
+* We provide zip file it untar the zip.
+* It can fetch files from the web thourgh URL.
+
+Expose:
+* EXPOSE instruction informs Docker that the container listens on a specified port at runtime.
+* It acts as documentation.
+* It does not automatically publish or map these ports to the host machine.
+* To actually make the exposed ports accessible from the host machine, you must map them when running the container using the "docker run -p" command.
+
+Requirement.txt:
+* It's not a docker argument it is in Python, "requirements.txt" is a text file that lists all the external libraries, modules, and packages that a specific Python project depends on.
+* The "requirements.txt" file typically contains one package per line, optionally followed by a version specifier (e.g., package_name==1.2.3) (numpy==1.26.2).
+* The pip package manager uses the "requirements.txt" file to install all listed packages (pip install -r requirements.txt).
+* The convention of using "requirements.txt" in Dockerfiles for Python projects is primarily due to its widespread adoption and integration within the Python ecosystem.
+* We can use a different file name (e.g., dependencies.txt, python_packages.txt) and specify it in your pip install command within the Dockerfile (e.g., RUN pip install -r dependencies.txt), this deviates from the established convention and offers no significant advantages. It would likely lead to confusion for developers familiar with the standard requirements.txt practice.
 
 **Run the docker file**
 
         docker build -t ubuntu:latest .
 
 **Key points:**
-
 * The -t flag assign names to the image and it is optional because in the system 100's of image might present.
 * The . at the end specifies current directory
 * Your Dockerfile should be named "Dockerfile" (case-sensitive)
