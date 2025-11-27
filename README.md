@@ -7,22 +7,39 @@ Containers:
 * Containers are light in weight (size), and they are isolated from the underlying infrastructure.
 * Virtualization is a technology that is used to create virtual representations of servers, storage, and networks on physical machines.
 
+Docker Architecture's Core components:
+1. Docker Daemon (background process)
+2. Docker Engine
+3. Docker Client (CLI where run docker commands)
+4. Docker registry (Docker Hub UI) 
+
+<img width="659" height="591" alt="image" src="https://github.com/user-attachments/assets/5ff85956-cf76-4e9c-a24c-18d367b1cb1f" />
+
 Docker daemon: 
-* The Docker daemon is the heart of the Docker system. It's responsible for managing the entire Docker lifecycle. 
+* The Docker daemon (known as dockerd) is the actual process that runs the containers.
+* It is a background process that runs on the host operating system and manages the lifecycle of Docker containers.
+* Docker daemon has a REST API (called the Docker Engine API), which is a way for other programs to talk to docker daemon.
+* Docker client is an example of such a program. Whenever we use a "docker" command, the client uses the API to tell Docker daemon what it should do.
+
+Docker Client:
+* It is a CLI utility that allows users to interact with the Docker daemon.
+* Docker client communicates with the Docker daemon via the REST API.
+* The client uses the REST API to send requests to the daemon to do things like build, run, and manage containers.
+* Docker client can run on the same host as the Docker daemon, or it can run on a separate machine and communicate with the Docker daemon over the network.
+
+Docker registry:
+* Docker registry is a central storage location for uploading and downloading Docker images.
+* The most common registry is Docker Hub, where developers can publish their images for others to use. Private registries can also be set up.
+* Anyone who have access to the registry/image can download the image and run as a container.
+
+Note: Below commands are run through user root and a regular does not have a permission to run docker commands, this is a drawback which docker have. So add your localuser to group docker and Logout and Login back from localuser
 
         docker run hello-world      # Create 1st Image
-
         docker images               # Check created images
+        sudo usermod -aG docker ec2-user
+        grep docker /etc/group
 
-Note: Above commands are run through user root and a regular does not have a permission to run docker commands, this is a drawback which docker have. So add your localuser to group docker.
-
-          sudo usermod -aG docker ec2-user
-
-          grep docker /etc/group
-
-**Logout and Login back from localuser (ec2-user)**
-
-**First Docker file**
+Dockerfile:
 
         # Image used is ubuntu
         FROM ubuntu:latest
