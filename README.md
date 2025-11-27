@@ -261,6 +261,20 @@ Types:
 5. macvlan: Assigns a MAC address to each container, making it appear as a physical device on the network.
 6. ipvlan: Similar to macvlan but uses a different method for traffic handling. It’s more efficient for high-density environments but less flexible.
 
+Example:
+        docker network ls                # list available networks
+        docker run -d --name login nginx:latest
+        docker run -d --name logout nginx:latest
+        docker exec -it login /bin/bash
+        apt install ping -y                # installing in container
+        apt install iputils-ping -y        # installing in container
+        ping -V
+        docker inspect login | grep Address        #  "IPAddress": "172.17.0.2"
+        docker inspect logout | grep Address        #  "IPAddress": "172.17.0.3"
 
- 
-  
+Note: Ping from login container to logout container, it will work as they are using bridge networking and both are in same network
+
+        docker network create secure-network        # create bridge network named secure-network
+        docker run -d --name finance --network=secure-network nginx:latest        # create another cont named finance
+        
+
