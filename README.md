@@ -243,14 +243,23 @@ Verify:
 * At path "/var/lib/docker/volumes/sunny/_data" I will get "requirement.txt"
 
 
+# Docker/container Networking
 
+Docker includes a networking system for managing communications between containers, your Docker host, and the outside world.
 
+What:
+* Docker networking is the system that enables containers to communicate with each other, the host, and external networks.
+* It provides isolated, flexible network environments using built-in drivers like bridge, host, overlay, and none.
 
+Types:
+* Docker supports six network types to manage container communication.
 
-
-
-
-
+1. bridge: default for standalone containers. It creates a private internal network on the host, and containers can communicate through it using IPs or container names.
+2. host: Removes network isolation by using the host’s network stack directly. This allows containers to share the host’s IP and ports.
+3. none: Disables networking completely. Useful for security or manual configuration.
+4. overlay: Enables multi-host networking using Docker Swarm. It creates a distributed network across nodes.
+5. macvlan: Assigns a MAC address to each container, making it appear as a physical device on the network.
+6. ipvlan: Similar to macvlan but uses a different method for traffic handling. It’s more efficient for high-density environments but less flexible.
 
 
  
