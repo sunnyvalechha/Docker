@@ -129,17 +129,15 @@ Contanerize django/any application:
         RUN pip install -r requirement.txt
         ENTRYPOINT ["python3"]
                         
-        docker build -t sunny/django-app .
-
 **Run the docker file**
 
-        docker build -t ubuntu:latest .
+        docker build -t sunny/django-app .
 
 **Key points:**
 * The -t flag assign names to the image and it is optional because in the system 100's of image might present.
 * The . at the end specifies current directory
-* Your Dockerfile should be named "Dockerfile" (case-sensitive)
-* If your Dockerfile has a different name, you would use the -f flag
+* Your Dockerfile should be named "Dockerfile" only (case-sensitive)
+* If your Dockerfile has a different name, you should use the -f flag
 
 Example:
 docker build -t docker-image:latest -f MyDockerfile .
@@ -147,9 +145,9 @@ docker build -t docker-image:latest -f MyDockerfile .
 Steps:
 1. Create Dockerfile
 2. Docker image created
-3. Run the image to create a container
+3. Run "docker run" to create a container from image
 
-        docker run -it sunny/ubuntu:latest /bin/bash
+        docker run -it sunny/django-app /bin/bash
 
 Arguments:
 * -it = interactive terminal (keeps STDIN open and allocates a pseudo-TTY)
