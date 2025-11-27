@@ -1,12 +1,14 @@
-# Docker
+Docker: 
+* Docker is a platform where we run virtaul machines as a container with minimum system dependencies.
 
-Reference repo: https://github.com/iam-veeramalla/Docker-Zero-to-Hero
+Containers: 
+* A container is a bundle of application and application libraries required to run your application in the minimum system dependencies.
+* A container is an advanced version of a virtual machine, and Docker is a tool that creates containers as virtual machines.
+* Containers are light in weight (size), and they are isolated from the underlying infrastructure.
+* Virtualization is a technology that is used to create virtual representations of servers, storage, and networks on physical machines.
 
-Docker: Docker is a platform where we run virtaul machines as a container with minimum system dependencies.
-
-Containers: A container is a bundle of application and application libraries required to run your application in the minimum system dependencies.
-
-Docker daemon: The Docker daemon is the heart of the Docker system. It's responsible for managing the entire Docker lifecycle. 
+Docker daemon: 
+* The Docker daemon is the heart of the Docker system. It's responsible for managing the entire Docker lifecycle. 
 
         docker run hello-world      # Create 1st Image
 
