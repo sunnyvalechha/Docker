@@ -29,7 +29,8 @@ Docker Client:
 
 Docker registry:
 * Docker registry is a central storage location for uploading and downloading Docker images.
-* The most common registry is Docker Hub, where developers can publish their images for others to use. Private registries can also be set up.
+* The most common registry is Docker Hub, where developers can publish their images for others to use.
+* Registries can be public or private.
 * Anyone who have access to the registry/image can download the image and run as a container.
 
 Note: Below commands are run through user root and a regular does not have a permission to run docker commands, this is a drawback which docker have. So add your localuser to group docker and Logout and Login back from localuser
