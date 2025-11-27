@@ -120,16 +120,16 @@ Contanerize django/any application:
 * Once I get pip, I will install djando with pip.
 
 cat requirement.txt 
-numpy==1.26.2
+        numpy==1.26.2
 
 cat Dockerfile 
-FROM python
-WORKDIR /sunny
-COPY requirement.txt /sunny
-RUN pip install -r requirement.txt
-ENTRYPOINT ["python3"]
+        FROM python
+        WORKDIR /sunny
+        COPY requirement.txt /sunny
+        RUN pip install -r requirement.txt
+        ENTRYPOINT ["python3"]
 
-docker build -t sunny/django-app .
+        docker build -t sunny/django-app .
 
 **Run the docker file**
 
