@@ -214,44 +214,33 @@ By moving towards multi-stage builds and distroless images we not only reduce th
 
 # Bind mounts & Volumes
 
-**Bind mount**: 
+Bind mount: 
 * A file or directory on the host machine is mounted with a container.
 * Bind mount creates direct link between a host system path and a container allowing access to files or directories stored anywhere on the host.
 
-**Volume**: 
-* Whenever we create a volume using "docker volume create" command and docker itself create a directory.
-* Volumes retain the data even after the containers using the volumes are deleted.
-* Volume data is stored on the host OS but to access the volume data we must mount the volume directory with the container.
+Volume:
+* Whenever we create a volume using "docker volume create" command, docker itself create a directory inside **"/var/lib/docker/volumes"**.
+* Volumes retains the data even after the containers using the volumes are deleted.
+* Volume data is stored on the host OS but to access the volume data, we must mount the volume directory with the container.
 
-When to use:
+Why and When to use:
 * When you want to create or generate files in a container and persist the files onto the host's filesystem.
 * Sharing configuration files from the host machine to containers. This is how Docker provides DNS resolution to containers by default, by mounting **/etc/resolv.conf** from the host machine into each container.
 * Docker volume can be shared between host to container and container to container.
 
+Example:
+        docker volume create sunny
+        docker volume ls
+        docker inspect sunny        # get information of volume
+        docker run -d --mount source=sunny,target=/bhrama centos/systemd
 
-Why: Containers are lightweight and utilize the host operating system's resources (CPU, memory)?.
-* Suppose there is an application running on a container and a application also have a log file and suddenly the container goes down.
-
-**Practical:**
-
-* docker -v | docker --mount                # both the commands works same
-* docker volume ls                          # list all volumes
-* docker volume create dev-volume           # create new volume
-
-Note: Above, we have created a volume, now we can dedicate this partition / volume to one container or multiple containers.
-
-* docker volume inspect dev-volume          # get information about the volume
-
-Note: To delete the volume first stop the containert then delete the container.
-
-* docker volume rm sunnyvol                 # delete a volume
-* docker run -d --mount source=sunny,target=/app nginx:latest
-* docker inspect a056b606c3fa | grep Mount
-
-<img width="842" height="233" alt="image" src="https://github.com/user-attachments/assets/4c6cd8dc-f8e2-47cd-888e-7dece6fac70e" />
-
-
-The directory "/var/lib/docker/volumes/sunny/_data" will be created at the local machine.
+Dockerfile:
+        FROM ubuntu
+        WORKDIR /bhrama
+        COPY requirement.txt /bhrama
+        EXPOSE 80 443
+Verify:
+* At path "/var/lib/docker/volumes/sunny/_data" I will get "requirement.txt"
 
 
 
