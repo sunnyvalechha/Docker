@@ -10,7 +10,7 @@ Containers:
 Technology Behind Docker:
 * Docker is built on top of several features of the Linux kernel.
 * Linux kernel is the part of the operating system that communicates directly with the computer's hardware and manages the system's resources (such as memory, CPU, and so on).
-* Let's take a closer look at two of these features: namespaces and control groups.
+* Let's take a closer look at two of these features: **namespaces** and **control groups**.
 
 Namespaces:
 * It creates a little "container" for your app that's isolated from the rest of the system.
