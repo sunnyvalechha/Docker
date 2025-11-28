@@ -338,7 +338,7 @@ Scenerio-1 - establish ssh from 1 container to another:
         check both containers IP using inspect command
         ssh root@172.17.0.3                # ssh from cont-1 to cont-2
 
-Scenerio-2 - 
+Scenerio-2:
 
         FROM ubuntu
         RUN apt-get update && apt-get install apache2 -y
@@ -350,6 +350,19 @@ Scenerio-2 -
         docker run -p 80:80 --name apache-cont -d apache-img
 
         
+Scenerio-3:
+
+        FROM python:3.9-slim
+        WORKDIR /bhrama
+        RUN apt-get update -y \
+                && apt-get upgrade -y \
+                && apt-get install gcc default-libmysqlclient-dev pkg-config \
+                && rm -rf /var/lib/apt/lists/*
+        COPY requirement.txt
+        RUN pip install mysqlclient
+        RUN pip install -r requirement.txt
+        COPY . . # copying code from host to container at current location
+        CMD ["python", "app.py"]
 
         
         
