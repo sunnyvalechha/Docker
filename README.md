@@ -321,7 +321,9 @@ Workflow:
 * Manage the app lifecycle - docker compose down, restart, or up --scale
 
 
-# Real Projects
+# Scenerios
+
+Scenerio-1 - establish ssh from 1 container to another:
 
         docker container prune        # delete if you have any unwanted containers
         docker run -it --name container-1 ubuntu
@@ -335,5 +337,19 @@ Workflow:
         Login to both container and update root password
         check both containers IP using inspect command
         ssh root@172.17.0.3                # ssh from cont-1 to cont-2
+
+Scenerio-2 - 
+
+        FROM ubuntu
+        RUN apt-get update && apt-get install apache2 -y
+        EXPOSE 80 443
+        CMD ["apache2ctl", "-D", "FOREGROUND"]
+
+        docker build -t apache-img .
+
+        docker run -p 80:80 --name apache-cont -d apache-img
+
+        
+
         
         
