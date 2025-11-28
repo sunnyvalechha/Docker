@@ -319,3 +319,21 @@ Workflow:
 * Run docker compose up
 * Compose sets up networking and volumes
 * Manage the app lifecycle - docker compose down, restart, or up --scale
+
+
+# Real Projects
+
+        docker container prune        # delete if you have any unwanted containers
+        docker run -it --name container-1 ubuntu
+        apt update -y
+        apt install vim -y
+        apt install openssh-server -y        # /etc/ssh/ directory will present
+        vi /etc/ssh/sshd_config                # Enable ssh 
+        service --status-all
+        service ssh start
+        docker start container-1 container-2
+        Login to both container and update root password
+        check both containers IP using inspect command
+        ssh root@172.17.0.3                # ssh from cont-1 to cont-2
+        
+        
