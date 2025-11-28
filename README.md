@@ -288,4 +288,34 @@ Note: Ping from login cont to finance cont, this time it will not work (ping 172
          
 # Docker Compose
 
+* Docker Compose is a tool used to manage multi-container Docker applications. It allows you to use a single "docker-compose.yml" file to configure and run multiple containers as a service.
+* It simplifies running interconnected services, such as a frontend, backend API, and database, by allowing them to be launched and controlled together.
+* Using a YAML configuration file (typically docker-compose.yml), you can describe each service and its dependencies as code.
+* All services can be started with a single **docker-compose** command, making it easier to coordinate development or testing environments.
+* Your containers will run with the same configuration every time there’s no risk of forgetting to include an important docker run flag.
+* Compose automatically creates a **Docker network** for your project, ensuring your containers can communicate with each other.
+* It also manages your **Docker storage volumes**, automatically reattaching them after a service is restarted or replaced.
 
+Docker Compose workflows include:
+
+1. Services – A service is essentially a container in the context of Docker Compose. Each service runs in its own container. You define services in the **docker-compose.yml** file, specifying things like:
+* The image to use (image: nginx)
+* Build context (build: .)
+* Port mappings (ports: - "8080:80")
+* Volumes, environment variables, networks, etc.
+
+2. Networks – Docker Compose creates a default network for your application so services can communicate using container names. You can also define custom networks if needed.
+3. Volumes – Persistent data can be stored and shared between containers using volumes. You can define and mount them via volumes:.
+
+
+Why Docker Compose:
+
+* Most real-world applications have several services with dependencies for example, your app may run in one container, but depend on a database server that’s deployed in another container.
+* Moreover, services usually need to be configured with storage volumes, environment variables, port bindings, and other settings before they can be deployed.
+* By using docker-compose up, you can spin up the entire stack with one command, ensuring consistency across environments.
+
+Workflow:
+* Define your application in docker-compose.yml
+* Run docker compose up
+* Compose sets up networking and volumes
+* Manage the app lifecycle - docker compose down, restart, or up --scale
