@@ -365,5 +365,7 @@ Scenerio-3:
         COPY . . # copying code from host to container at current location
         CMD ["python", "app.py"]
 
-        
+        Docker Login:
+docker login -u sunnyvalechha
+dckr_pat_9jNnnnuWUNEKXCBjfASR0RHy
         
