@@ -364,8 +364,4 @@ Scenerio-3:
         RUN pip install -r requirement.txt
         COPY . . # copying code from host to container at current location
         CMD ["python", "app.py"]
-
-        Docker Login:
-docker login -u sunnyvalechha
-dckr_pat_9jNnnnuWUNEKXCBjfASR0RHy
         
